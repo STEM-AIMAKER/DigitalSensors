@@ -1,7 +1,8 @@
 {
     "name": "digitalsensors",
-    "version": "0.0.0",
-    "description": "",
+    "version": "1.0.0",
+    "description": "Hanshin STEM digital sensors",
+    "license": "MIT",
     "dependencies": {
         "core": "*",
         "radio": "*"
@@ -18,5 +19,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
