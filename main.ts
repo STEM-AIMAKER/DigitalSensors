@@ -3,6 +3,7 @@
  */
 //% color=190 weight=100 icon="\uf1ec" block="Hanshin STEM digital sensors"
 //% groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
+
 namespace HanshinDigitalSensors
 {
  /**
@@ -15,29 +16,34 @@ namespace HanshinDigitalSensors
     export namespace DigitalShake
     {
         let shakePin = null;
-        let onShakeEventHandler: (shake: boolean) => void;
+        let onShakeTestEventHandlerTrue: () => void
+        let onShakeTestEventHandlerFalse: () => void
         //% blockId=shakeSensor block="Shake sensor at pin=%p"
         //% group="Digital Shake"
         export function shakeSensor(p: DigitalPin) : void {
             shakePin = p
             pins.setPull(p, PinPullMode.PullNone)
         }
+
         /**
          * Registers code to run when there is a shake.
          */
-        //% blockId=digitalshake_on_shake_event block="on shake event" 
+        //% blockId=digitalshake_on_shake_event block="on shake event %shake" 
         //% group="Digital Shake"
-        export function onShakeEvent(cb: (shake: boolean) => void) {
-            onShakeEventHandler = cb;
+        export function onShakeEvent(shake: boolean, cb: () => void) {
+            if( shake )
+                onShakeTestEventHandlerTrue = cb
+            else
+                onShakeTestEventHandlerFalse = cb
         }
 
         pins.onPulsed(shakePin, PulseValue.High, function () {
-            if( onShakeEventHandler )
-                onShakeEventHandler(true)
+            if( onShakeTestEventHandlerTrue )
+                onShakeTestEventHandlerTrue()
         })
         pins.onPulsed(shakePin, PulseValue.Low, function () {
-          if( onShakeEventHandler )
-                onShakeEventHandler(false)
+          if( onShakeTestEventHandlerFalse )
+                onShakeTestEventHandlerFalse()
         })
     };
 
