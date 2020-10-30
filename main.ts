@@ -12,19 +12,40 @@ namespace HanshinDigitalSensors
 // color=190 weight=100 icon="\uf1ec" block="Hanshin STEM digital sensors"
 // groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
 
-       //% group="Digital Shake"
-    //export namespace DigitalShake
-    //{
-        let shakePin = null;
+    //% group="Digital Shake"
+    export namespace DigitalShake
+    {
+        let shakePin: DigitalPin = null;
         let onShakeTestEventHandlerTrue: () => void
         let onShakeTestEventHandlerFalse: () => void
+        
+        //% blockId=isShake block="Is shake"
+        //% group="Digital Shake"
+        export function isShake(): boolean {
+            if( shakePin )
+            {
+                return (1==pins.digitalReadPin(shakePin))
+            }
+            return false
+        } 
+
         //% blockId=shakeSensor block="Shake sensor at pin=%p"
         //% group="Digital Shake"
         export function shakeSensor(p: DigitalPin) : void {
             shakePin = p
             pins.setPull(p, PinPullMode.PullNone)
-        }
 
+            pins.onPulsed(shakePin, PulseValue.High, function () {
+                if( onShakeTestEventHandlerTrue )
+                    onShakeTestEventHandlerTrue()
+            })
+            
+            pins.onPulsed(shakePin, PulseValue.Low, function () {
+                if( onShakeTestEventHandlerFalse )
+                    onShakeTestEventHandlerFalse()
+            })
+        }
+        
         /**
          * Registers code to run when there is a shake.
          */
@@ -36,16 +57,7 @@ namespace HanshinDigitalSensors
             else
                 onShakeTestEventHandlerFalse = cb
         }
-
-        pins.onPulsed(shakePin, PulseValue.High, function () {
-            if( onShakeTestEventHandlerTrue )
-                onShakeTestEventHandlerTrue()
-        })
-        pins.onPulsed(shakePin, PulseValue.Low, function () {
-          if( onShakeTestEventHandlerFalse )
-                onShakeTestEventHandlerFalse()
-        })
-    //};
+    };
 
     //% group="Digital Switch"
     export namespace DigitalSwitch {
@@ -101,32 +113,43 @@ namespace HanshinDigitalSensors
 
     //% group="KeyBoard"
     export namespace KeyBoard {
-        let keyboardPin = null;
-        let onKeyBoardEventHandler: (pressed: boolean) => void;
+        let keyboardPin: DigitalPin = null
+        let onKeyBoardEventHandlerTrue: () => void
+        let onKeyBoardEventHandlerFalse: () => void
+
+        //% blockId=isKeyboardPressed block="Is keyboard pressed"
+        //% group="KeyBoard"
+        export function isKeyboardPressed() : boolean {
+            if( keyboardPin )
+                return (1 == pins.digitalReadPin(keyboardPin))
+            return false
+        }
         //% blockId=keyBoardSensor block="KeyBoard sensor at pin=%p"
         //% group="KeyBoard"
         export function  keyBoardSensor(p: DigitalPin) : void {
-            keyboardPin = p
             pins.setPull(p, PinPullMode.PullNone)
+            keyboardPin = p
+            pins.onPulsed(p, PulseValue.High, function () {
+                if( onKeyBoardEventHandlerTrue )
+                    onKeyBoardEventHandlerTrue()
+            })
+            pins.onPulsed(p, PulseValue.Low, function () {
+                if( onKeyBoardEventHandlerFalse )
+                    onKeyBoardEventHandlerFalse()
+            })
         }
 
         /**
          * Registers code to run when keyboard is pressed.
          */
-        //% blockId=onPressedEvent block="on keyboard pressed event" 
+        //% blockId=onPressedEvent block="on keyboard pressed=%pressed event" 
         //% group="KeyBoard"
-        export function onPressedEvent(cb: (pressed: boolean) => void) {
-            onKeyBoardEventHandler = cb;
-        }
-
-        pins.onPulsed(keyboardPin, PulseValue.High, function () {
-            if( onKeyBoardEventHandler )
-                onKeyBoardEventHandler(true)
-        })
-        pins.onPulsed(keyboardPin, PulseValue.Low, function () {
-          if( onKeyBoardEventHandler )
-                onKeyBoardEventHandler(false)
-        })
+        export function onPressedEvent(pressed: boolean, cb: () => void) {
+            if( pressed )
+                onKeyBoardEventHandlerTrue = cb
+            else
+                onKeyBoardEventHandlerFalse = cb
+        }      
     };
 
     //% group="LED Module"
@@ -157,62 +180,87 @@ namespace HanshinDigitalSensors
 
     //% group="Megnetic"
     export namespace Megnetic {
-        let megneticPin = null;
-        let onMegneticEventHandler: (megnetic: boolean) => void;
+        let megneticPin:DigitalPin = null;
+        let onMegneticEventHandlerTrue: () => void
+        let onMegneticEventHandlerFalse: () => void
+
+        //% blockId=isMegnetic block="Is megnetic"
+        //% group="Megnetic"
+        export function isMegnetic() : boolean {
+            if( megneticPin )
+                return (1 == pins.digitalReadPin(megneticPin))
+            return false
+        }
+
         //% blockId=megneticSensor block="Megnetic sensor at pin=%p"
         //% group="Megnetic"
         export function  megneticSensor(p: DigitalPin) : void {
             megneticPin = p
             pins.setPull(p, PinPullMode.PullNone)
+            pins.onPulsed(megneticPin, PulseValue.High, function () {
+                if( onMegneticEventHandlerTrue )
+                    onMegneticEventHandlerTrue()
+            })
+            pins.onPulsed(megneticPin, PulseValue.Low, function () {
+                if( onMegneticEventHandlerFalse )
+                    onMegneticEventHandlerFalse()
+            })
         }
 
         /**
          * Registers code to run when there is megnetic.
          */
-        //% blockId=onMegneticEvent block="on megnetic event" 
+        //% blockId=onMegneticEvent block="on megnetic %megnetic event" 
         //% group="Megnetic"
-        export function onMegneticEvent(cb: (megnetic: boolean) => void) {
-            onMegneticEventHandler = cb;
+        export function onMegneticEvent(megnetic: boolean, cb: () => void) {
+            if( megnetic )
+                onMegneticEventHandlerTrue = cb
+            else
+                onMegneticEventHandlerFalse = cb
         }
-
-        pins.onPulsed(megneticPin, PulseValue.High, function () {
-            if( onMegneticEventHandler )
-                onMegneticEventHandler(true)
-        })
-        pins.onPulsed(megneticPin, PulseValue.Low, function () {
-          if( onMegneticEventHandler )
-                onMegneticEventHandler(false)
-        })
     };
 
     //% group="PIR"
     export namespace PIR {
-        let pirPin = null;
-        let onPIREventHandler: (hasPerson: boolean) => void;
+        let pirPin: DigitalPin = null;
+        let onPIREventHandlerTrue: () => void;
+        let onPIREventHandlerFalse: () => void;
+
+         //% blockId=isHasPerson block="Is has person"
+        //% group="PIR"
+        export function isHasPerson() : boolean {
+            if( pirPin )
+                return (1 == pins.digitalReadPin(pirPin))
+            return false
+        }
+
         //% blockId=pirSensor block="PIR sensor at pin=%p"
         //% group="PIR"
         export function pirSensor(p: DigitalPin) : void {
             pirPin = p
             pins.setPull(p, PinPullMode.PullNone)
+            
+            pins.onPulsed(pirPin, PulseValue.High, function () {
+                if( onPIREventHandlerTrue )
+                    onPIREventHandlerTrue
+            })
+            pins.onPulsed(pirPin, PulseValue.Low, function () {
+            if( onPIREventHandlerFalse )
+                    onPIREventHandlerFalse
+            })            
         }
 
         /**
          * Registers code to run when there is person.
          */
-        //% blockId=onPIREvent block="on pir event" 
+        //% blockId=onPIREvent block="on pir has person=%hasPerson event" 
         //% group="PIR"
-        export function onPIREvent(cb: (hasPerson: boolean) => void) {
-            onPIREventHandler = cb;
+        export function onPIREvent(hasPerson:boolean, cb: () => void) {
+            if( hasPerson )
+                onPIREventHandlerTrue = cb
+            else
+                onPIREventHandlerFalse = cb
         }
-
-        pins.onPulsed(pirPin, PulseValue.High, function () {
-            if( onPIREventHandler )
-                onPIREventHandler(true)
-        })
-        pins.onPulsed(pirPin, PulseValue.Low, function () {
-          if( onPIREventHandler )
-                onPIREventHandler(false)
-        })
     };
 
 
