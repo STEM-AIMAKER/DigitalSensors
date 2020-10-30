@@ -1,4 +1,4 @@
-/**
+ /**
  * Hanshin STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="Hanshin STEM digital sensors"
@@ -23,6 +23,17 @@ namespace HanshinDigitalSensors
             pins.setPull(p, PinPullMode.PullNone)
         }
 
+ enum Delimiters {
+    //% block="new line"
+    NewLine = 1,
+    //% block=","
+    Comma = 2
+}
+        //% blockId=onTestShake block="Shake test"
+        //% group="Digital Shake"
+        export function onTestShake(b: () => Delimiters ) : void {
+
+        }
         /**
          * Registers code to run when there is a shake.
          */
