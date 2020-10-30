@@ -1,7 +1,7 @@
  /**
  * Hanshin STEM Sensors
  */
-//% color=190 weight=100 icon="\uf1ec" block="Hanshin STEM digital sensors"
+//% color=190 weight=100 icon="\uf1ec" block="HANSHIN: digital sensors"
 //% groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
 
 namespace HanshinDigitalSensors
