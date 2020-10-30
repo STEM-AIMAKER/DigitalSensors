@@ -2,14 +2,14 @@
  * Hanshin STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="Hanshin STEM digital sensors"
-//% groups=['Digital Shake','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
+//% groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
 namespace HanshinDigitalSensors
 {
  /**
  * Hanshin STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="Hanshin STEM digital sensors"
-// groups=['Digital Shake','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
+// groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
 
     //% group="Digital Shake"
     export namespace DigitalShake
@@ -21,18 +21,6 @@ namespace HanshinDigitalSensors
         export function shakeSensor(p: DigitalPin) : void {
             shakePin = p
             pins.setPull(p, PinPullMode.PullNone)
-        }
-
- enum Delimiters {
-    //% block="new line"
-    NewLine = 1,
-    //% block=","
-    Comma = 2
-}
-        //% blockId=onTestShake block="Shake test"
-        //% group="Digital Shake"
-        export function onTestShake(b: () => Delimiters ) : void {
-
         }
         /**
          * Registers code to run when there is a shake.
@@ -51,6 +39,32 @@ namespace HanshinDigitalSensors
           if( onShakeEventHandler )
                 onShakeEventHandler(false)
         })
+    };
+
+    //% group="Digital Switch"
+    export namespace DigitalSwitch {
+        let dsPin : DigitalPin = null;
+        //% blockId=turnOn block="Turn on switch at pin=%p"
+        //% group="Digital Switch"
+        export function turnOn(p: DigitalPin) : void {
+            dsPin = p
+            pins.digitalWritePin(p,1)
+        }
+
+        //% blockId=turnOnAndOff block="turn on switch second=%second at pin=%p then turn off"
+        //% group="Digital Switch"
+        export function turnOnAndOff(second: number, p: DigitalPin): void {
+            pins.digitalWritePin(p,1)
+            basic.pause(second*1000)
+            pins.digitalWritePin(p, 0)
+        }
+
+        //% blockId=turnOff block="Turn off switch"
+        //% group="Digital Switch"
+        export function turnOff() : void {
+            if( dsPin )
+                pins.digitalWritePin(dsPin, 0)
+        }
     };
 
     //% group="Fan Module"
