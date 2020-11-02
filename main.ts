@@ -232,11 +232,11 @@ namespace HanshinDigitalSensors
             
             pins.onPulsed(pirPin, PulseValue.High, function () {
                 if( onPIREventHandlerTrue )
-                    onPIREventHandlerTrue
+                    onPIREventHandlerTrue()
             })
             pins.onPulsed(pirPin, PulseValue.Low, function () {
             if( onPIREventHandlerFalse )
-                    onPIREventHandlerFalse
+                    onPIREventHandlerFalse()
             })            
         }
 
