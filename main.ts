@@ -261,22 +261,22 @@ namespace HanshinDigitalSensors
         //% group="Relay Module"
         export function turnOnRelay(p: DigitalPin) : void {
             relayPin = p
-            pins.digitalWritePin(p,1)
+            pins.digitalWritePin(p,0)
         }
 
         //% blockId=turnOnRelayAndTurnOff block="Turn on relay second=%second at pin=%p then turn off"
         //% group="Relay Module"
         export function turnOnRelayAndTurnOff(second: number, p: DigitalPin): void {
-            pins.digitalWritePin(p,1)
+            pins.digitalWritePin(p,0)
             basic.pause(second*1000)
-            pins.digitalWritePin(p, 0)
+            pins.digitalWritePin(p, 1)
         }
 
         //% blockId=turnOffRelay block="Turn off relay"
         //% group="Relay Module"
         export function turnOffRelay() : void {
             if( relayPin )
-                pins.digitalWritePin(relayPin, 0)
+                pins.digitalWritePin(relayPin, 1)
         }
     };
 
