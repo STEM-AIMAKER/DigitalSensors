@@ -231,12 +231,12 @@ namespace HanshinDigitalSensors
             pins.setPull(p, PinPullMode.PullNone)
             
             pins.onPulsed(pirPin, PulseValue.High, function () {
-                if( onPIREventHandlerTrue )
-                    onPIREventHandlerTrue()
+                if( onPIREventHandlerFalse )
+                    onPIREventHandlerFalse()
             })
             pins.onPulsed(pirPin, PulseValue.Low, function () {
-            if( onPIREventHandlerFalse )
-                    onPIREventHandlerFalse()
+                if( onPIREventHandlerTrue )
+                    onPIREventHandlerTrue()
             })            
         }
 
