@@ -111,7 +111,7 @@ namespace HanshinDigitalSensors
         //% group="KeyBoard"
         export function isKeyboardPressed() : boolean {
             if( keyboardPin )
-                return (1 == pins.digitalReadPin(keyboardPin))
+                return (0 == pins.digitalReadPin(keyboardPin))
             return false
         }
         //% blockId=keyBoardSensor block="KeyBoard sensor at pin=%p"
