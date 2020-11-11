@@ -2,7 +2,7 @@
  * Hanshin STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="HANSHIN: digital sensors"
-//% groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
+//% groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Magnetic','PIR','Relay Module','Vibration Motor','others']
 
 namespace HanshinDigitalSensors
 {
@@ -10,7 +10,7 @@ namespace HanshinDigitalSensors
  * Hanshin STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="Hanshin STEM digital sensors"
-// groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Megnetic','PIR','Relay Module','Vibration Motor','others']
+// groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Magnetic','PIR','Relay Module','Vibration Motor','others']
 
     //% group="Digital Shake"
     export namespace DigitalShake
@@ -168,45 +168,45 @@ namespace HanshinDigitalSensors
         }
     };
 
-    //% group="Megnetic"
-    export namespace Megnetic {
-        let megneticPin:DigitalPin = null;
-        let onMegneticEventHandlerTrue: () => void
-        let onMegneticEventHandlerFalse: () => void
+    //% group="Magnetic"
+    export namespace Magnetic {
+        let magneticPin:DigitalPin = null;
+        let onMagneticEventHandlerTrue: () => void
+        let onMagneticEventHandlerFalse: () => void
 
-        //% blockId=isMegnetic block="Is megnetic"
-        //% group="Megnetic"
-        export function isMegnetic() : boolean {
-            if( megneticPin )
-                return (1 == pins.digitalReadPin(megneticPin))
+        //% blockId=isMagnetic block="Is magnetic"
+        //% group="Magnetic"
+        export function isMagnetic() : boolean {
+            if( magneticPin )
+                return (0 == pins.digitalReadPin(magneticPin))
             return false
         }
 
-        //% blockId=megneticSensor block="Megnetic sensor at pin=%p"
-        //% group="Megnetic"
-        export function  megneticSensor(p: DigitalPin) : void {
-            megneticPin = p
+        //% blockId=magneticSensor block="Magnetic sensor at pin=%p"
+        //% group="Magnetic"
+        export function  magneticSensor(p: DigitalPin) : void {
+            magneticPin = p
             pins.setPull(p, PinPullMode.PullNone)
-            pins.onPulsed(megneticPin, PulseValue.High, function () {
-                if( onMegneticEventHandlerTrue )
-                    onMegneticEventHandlerTrue()
+            pins.onPulsed(magneticPin, PulseValue.High, function () {
+                if( onMagneticEventHandlerTrue )
+                    onMagneticEventHandlerTrue()
             })
-            pins.onPulsed(megneticPin, PulseValue.Low, function () {
-                if( onMegneticEventHandlerFalse )
-                    onMegneticEventHandlerFalse()
+            pins.onPulsed(magneticPin, PulseValue.Low, function () {
+                if( onMagneticEventHandlerFalse )
+                    onMagneticEventHandlerFalse()
             })
         }
 
         /**
-         * Registers code to run when there is megnetic.
+         * Registers code to run when there is magnetic.
          */
-        //% blockId=onMegneticEvent block="on megnetic %megnetic event" 
-        //% group="Megnetic"
-        export function onMegneticEvent(megnetic: boolean, cb: () => void) {
-            if( megnetic )
-                onMegneticEventHandlerTrue = cb
+        //% blockId=onMagneticEvent block="on magnetic %magnetic event" 
+        //% group="Magnetic"
+        export function onMagneticEvent(magnetic: boolean, cb: () => void) {
+            if( magnetic )
+                onMagneticEventHandlerTrue = cb
             else
-                onMegneticEventHandlerFalse = cb
+                onMagneticEventHandlerFalse = cb
         }
     };
 
