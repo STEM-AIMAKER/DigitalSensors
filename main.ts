@@ -19,7 +19,7 @@ namespace HanshinDigitalSensors
         let onShakeTestEventHandlerTrue: () => void
         let onShakeTestEventHandlerFalse: () => void
         
-        //% blockId=shakeSensor block="Shake sensor1 at pin=%p"
+        //% blockId=shakeSensor block="Shake sensor at pin=%p"
         //% group="Digital Shake"
         export function shakeSensor(p: DigitalPin) : void {
             shakePin = p
