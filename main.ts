@@ -19,8 +19,8 @@ namespace HanshinDigitalSensors
         let onShakeTestEventHandlerTrue: () => void
         let onShakeTestEventHandlerFalse: () => void
         
-        //% blockId=shakeSensor block="Shake sensor at pin=%p"
-        //% group="Digital Shake"
+        //% blockId=shakeSensor block="Shake sensor2 at pin=%p"
+        //% group="Digital Shake2"
         export function shakeSensor(p: DigitalPin) : void {
             shakePin = p
             pins.setPull(p, PinPullMode.PullNone)
@@ -52,8 +52,8 @@ namespace HanshinDigitalSensors
     //% group="Digital Switch"
     export namespace DigitalSwitch {
         let dsPin : DigitalPin = null;
-        //% blockId=turnOn block="Turn on switch at pin=%p"
-        //% group="Digital Switch"
+        //% blockId=turnOn block="Turn on switch2 at pin=%p"
+        //% group="Digital Switch2"
         export function turnOn(p: DigitalPin) : void {
             dsPin = p
             pins.digitalWritePin(p,1)
