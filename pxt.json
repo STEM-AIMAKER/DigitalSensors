@@ -1,7 +1,7 @@
 {
     "name": "digitalsensors",
     "version": "1.0.0",
-    "description": "Hanshin STEM digital sensors",
+    "description": "AIMaker STEM digital sensors",
     "license": "MIT",
     "dependencies": {
         "core": "*",
