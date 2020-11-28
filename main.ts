@@ -2,17 +2,17 @@
  * Hanshin STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="HANSHIN: digital sensors"
-//% groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Magnetic','PIR','Relay Module','Vibration Motor','others']
+//% groups=['Shake','Digital Switch','Fan', 'Button','LED','Magnetic','Passive Infrared','Relay','Vibration Motor','others']
 
 namespace HanshinDigitalSensors
 {
  /**
  * Hanshin STEM Sensors
  */
-// color=190 weight=100 icon="\uf1ec" block="Hanshin STEM digital sensors"
-// groups=['Digital Shake','Digital Switch','Fan Module', 'KeyBoard','LED Module','Magnetic','PIR','Relay Module','Vibration Motor','others']
+// color=190 weight=100 icon="\uf1ec" block="AIMaker STEM digital sensors"
+// groups=['Digital Shake','Reed Switch','Fan', 'KeyBoard','LED Module','Magnetic','PIR','Relay Module','Vibration Motor','others']
 
-    //% group="Digital Shake"
+    //% group="Shake"
     export namespace DigitalShake
     {
         let shakePin: DigitalPin = null;
@@ -20,7 +20,7 @@ namespace HanshinDigitalSensors
         let onShakeTestEventHandlerFalse: () => void
         
         //% blockId=shakeSensor block="Shake sensor at pin=%p"
-        //% group="Digital Shake"
+        //% group="Shake"
         export function shakeSensor(p: DigitalPin) : void {
             shakePin = p
             pins.setPull(p, PinPullMode.PullNone)
@@ -40,7 +40,7 @@ namespace HanshinDigitalSensors
          * Registers code to run when there is a shake.
          */
         //% blockId=digitalshake_on_shake_event block="on shake event %shake" 
-        //% group="Digital Shake"
+        //% group="Shake"
         export function onShakeEvent(shake: boolean, cb: () => void) {
             if( shake )
                 onShakeTestEventHandlerTrue = cb
@@ -49,18 +49,18 @@ namespace HanshinDigitalSensors
         }
     };
 
-    //% group="Digital Switch"
+    //% group="Reed Switch"
     export namespace DigitalSwitch {
         let dsPin : DigitalPin = null;
         //% blockId=turnOn block="Turn on switch at pin=%p"
-        //% group="Digital Switch"
+        //% group="Reed Switch"
         export function turnOn(p: DigitalPin) : void {
             dsPin = p
             pins.digitalWritePin(p,1)
         }
 
         //% blockId=turnOnAndOff block="turn on switch second=%second at pin=%p then turn off"
-        //% group="Digital Switch"
+        //% group="Reed Switch"
         export function turnOnAndOff(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,1)
             basic.pause(second*1000)
@@ -68,25 +68,25 @@ namespace HanshinDigitalSensors
         }
 
         //% blockId=turnOff block="Turn off switch"
-        //% group="Digital Switch"
+        //% group="Reed Switch"
         export function turnOff() : void {
             if( dsPin )
                 pins.digitalWritePin(dsPin, 0)
         }
     };
 
-    //% group="Fan Module"
+    //% group="Fan"
     export namespace FanModule {
         let fanPin : DigitalPin = null;
         //% blockId=runFan block="Run fan at pin=%p"
-        //% group="Fan Module"
+        //% group="Fan"
         export function runFan(p: DigitalPin) : void {
             fanPin = p
             pins.digitalWritePin(p,1)
         }
 
         //% blockId=runFanAndStop block="Run fan second=%second at pin=%p then stop"
-        //% group="Fan Module"
+        //% group="Fan"
         export function runFanAndStop(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,1)
             basic.pause(second*1000)
@@ -94,28 +94,28 @@ namespace HanshinDigitalSensors
         }
 
         //% blockId=stopFan block="Stop fan"
-        //% group="Fan Module"
+        //% group="Fan"
         export function stopFan() : void {
             if( fanPin )
                 pins.digitalWritePin(fanPin, 0)
         }
     };
 
-    //% group="KeyBoard"
+    //% group="Button"
     export namespace KeyBoard {
         let keyboardPin: DigitalPin = null
         let onKeyBoardEventHandlerTrue: () => void
         let onKeyBoardEventHandlerFalse: () => void
 
         //% blockId=isKeyboardPressed block="Is keyboard pressed"
-        //% group="KeyBoard"
+        //% group="Button"
         export function isKeyboardPressed() : boolean {
             if( keyboardPin )
                 return (0 == pins.digitalReadPin(keyboardPin))
             return false
         }
         //% blockId=keyBoardSensor block="KeyBoard sensor at pin=%p"
-        //% group="KeyBoard"
+        //% group="Button"
         export function  keyBoardSensor(p: DigitalPin) : void {
             pins.setPull(p, PinPullMode.PullNone)
             keyboardPin = p
@@ -133,7 +133,7 @@ namespace HanshinDigitalSensors
          * Registers code to run when keyboard is pressed.
          */
         //% blockId=onPressedEvent block="on keyboard pressed=%pressed event" 
-        //% group="KeyBoard"
+        //% group="Button"
         export function onPressedEvent(pressed: boolean, cb: () => void) {
             if( pressed )
                 onKeyBoardEventHandlerTrue = cb
@@ -142,7 +142,7 @@ namespace HanshinDigitalSensors
         }      
     };
 
-    //% group="LED Module"
+    //% group="LED"
     export namespace LEDModule {
         let ledPin : DigitalPin = null;
         //% blockId=turnOnLED block="turn on LED at pin=%p"
@@ -153,7 +153,7 @@ namespace HanshinDigitalSensors
         }
 
         //% blockId=turnOnLEDAndTurnOff block="Turn on LED second=%second at pin=%p then turn off"
-        //% group="LED Module"
+        //% group="LED"
         export function turnOnLEDAndTurnOff(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,1)
             basic.pause(second*1000)
@@ -161,7 +161,7 @@ namespace HanshinDigitalSensors
         }
 
         //% blockId=turnOffLED block="Turn off LED"
-        //% group="LED Module"
+        //% group="LED"
         export function turnOffLED() : void {
             if( ledPin )
                 pins.digitalWritePin(ledPin, 0)
@@ -210,14 +210,14 @@ namespace HanshinDigitalSensors
         }
     };
 
-    //% group="PIR"
+    //% group="Passive Infrared"
     export namespace PIR {
         let pirPin: DigitalPin = null;
         let onPIREventHandlerTrue: () => void;
         let onPIREventHandlerFalse: () => void;
 
          //% blockId=isHasPerson block="Is has person"
-        //% group="PIR"
+        //% group="Passive Infrared"
         export function isHasPerson() : boolean {
             if( pirPin )
                 return (1 == pins.digitalReadPin(pirPin))
@@ -225,7 +225,7 @@ namespace HanshinDigitalSensors
         }
 
         //% blockId=pirSensor block="PIR sensor at pin=%p"
-        //% group="PIR"
+        //% group="Passive Infrared"
         export function pirSensor(p: DigitalPin) : void {
             pirPin = p
             pins.setPull(p, PinPullMode.PullNone)
@@ -244,7 +244,7 @@ namespace HanshinDigitalSensors
          * Registers code to run when there is person.
          */
         //% blockId=onPIREvent block="on pir has person=%hasPerson event" 
-        //% group="PIR"
+        //% group="Passive Infrared"
         export function onPIREvent(hasPerson:boolean, cb: () => void) {
             if( hasPerson )
                 onPIREventHandlerTrue = cb
@@ -254,18 +254,18 @@ namespace HanshinDigitalSensors
     };
 
 
-    //% group="Relay Module"
+    //% group="Relay"
     export namespace RelayModule {
         let relayPin : DigitalPin = null;
         //% blockId=turnOnRelay block="turn on relay at pin=%p"
-        //% group="Relay Module"
+        //% group="Relay"
         export function turnOnRelay(p: DigitalPin) : void {
             relayPin = p
             pins.digitalWritePin(p,0)
         }
 
         //% blockId=turnOnRelayAndTurnOff block="Turn on relay second=%second at pin=%p then turn off"
-        //% group="Relay Module"
+        //% group="Relay"
         export function turnOnRelayAndTurnOff(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,0)
             basic.pause(second*1000)
@@ -273,7 +273,7 @@ namespace HanshinDigitalSensors
         }
 
         //% blockId=turnOffRelay block="Turn off relay"
-        //% group="Relay Module"
+        //% group="Relay"
         export function turnOffRelay() : void {
             if( relayPin )
                 pins.digitalWritePin(relayPin, 1)
