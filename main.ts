@@ -1,16 +1,16 @@
  /**
- * Hanshin STEM Sensors
+ * AIMaker STEM Sensors
  */
-//% color=190 weight=100 icon="\uf1ec" block="HANSHIN: digital sensors"
+//% color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
 //% groups=['Shake','Digital Switch','Fan', 'Button','LED','Magnetic','Passive Infrared','Relay','Vibration Motor','others']
 
-namespace HanshinDigitalSensors
+namespace aimakerDigitalSensors
 {
  /**
- * Hanshin STEM Sensors
+ * AIMaker STEM Sensors
  */
-// color=190 weight=100 icon="\uf1ec" block="AIMaker STEM digital sensors"
-// groups=['Digital Shake','Reed Switch','Fan', 'KeyBoard','LED Module','Magnetic','PIR','Relay Module','Vibration Motor','others']
+// color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
+// groups=['Shake','Digital Switch','Fan', 'Button','LED','Magnetic','Passive Infrared','Relay','Vibration Motor','others']
 
     //% group="Shake"
     export namespace DigitalShake
