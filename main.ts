@@ -146,7 +146,7 @@ namespace HanshinDigitalSensors
     export namespace LEDModule {
         let ledPin : DigitalPin = null;
         //% blockId=turnOnLED block="turn on LED at pin=%p"
-        //% group="LED Module"
+        //% group="LED"
         export function turnOnLED(p: DigitalPin) : void {
             ledPin = p
             pins.digitalWritePin(p,1)
