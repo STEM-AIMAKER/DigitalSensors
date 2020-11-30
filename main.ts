@@ -4,7 +4,7 @@
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
 //% groups=['Shake','Digital Switch','Fan', 'Button','LED','Magnetic','Passive Infrared','Relay','Vibration Motor','others']
 
-namespace HanshinDigitalSensors
+namespace aimakerdigitalsensors
 {
  /**
  * AIMaker STEM Sensors
