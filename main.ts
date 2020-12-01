@@ -145,7 +145,7 @@ namespace aimakerdigitalsensors
     //% group="LED"
     export namespace LEDModule {
         let ledPin : DigitalPin = null;
-        //% blockId=turnOnLED block="turn on LED at pin=%p"
+        //% blockId=turnOnLED block="Turn on LED at pin=%p"
         //% group="LED"
         export function turnOnLED(p: DigitalPin) : void {
             ledPin = p
@@ -257,7 +257,7 @@ namespace aimakerdigitalsensors
     //% group="Relay"
     export namespace RelayModule {
         let relayPin : DigitalPin = null;
-        //% blockId=turnOnRelay block="turn on relay at pin=%p"
+        //% blockId=turnOnRelay block="Turn on relay at pin=%p"
         //% group="Relay"
         export function turnOnRelay(p: DigitalPin) : void {
             relayPin = p
