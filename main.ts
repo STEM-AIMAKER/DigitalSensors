@@ -114,7 +114,7 @@ namespace aimakerdigitalsensors
                 return (0 == pins.digitalReadPin(keyboardPin))
             return false
         }
-        //% blockId=keyBoardSensor block="Button  at pin=%p"
+        //% blockId=keyBoardSensor block="Button at pin=%p"
         //% group="Button"
         export function  keyBoardSensor(p: DigitalPin) : void {
             pins.setPull(p, PinPullMode.PullNone)
@@ -132,7 +132,7 @@ namespace aimakerdigitalsensors
         /**
          * Registers code to run when keyboard is pressed.
          */
-        //% blockId=onPressedEvent block="Button is  pressed=%pressed event" 
+        //% blockId=onPressedEvent block="Button is pressed=%pressed event" 
         //% group="Button"
         export function onPressedEvent(pressed: boolean, cb: () => void) {
             if( pressed )
