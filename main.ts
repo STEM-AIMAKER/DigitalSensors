@@ -59,7 +59,7 @@ namespace aimakerdigitalsensors
             pins.digitalWritePin(p,1)
         }
 
-        //% blockId=turnOnAndOff block="Switch for %second second at pin=%p then switch off"
+        //% blockId=turnOnAndOff block="Switch on for %second second at pin=%p then switch off"
         //% group="Water Pump"
         export function turnOnAndOff(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,1)
