@@ -360,7 +360,7 @@ namespace aimakerdigitalsensors
         kPin = k
         xPin = x
         yPin = y
-        
+       
     }
   };
 }
