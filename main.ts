@@ -307,7 +307,7 @@ namespace aimakerdigitalsensors
     };
      
  //% group="Joystick"
-  export namespace JoyStick {
+  export namespace JoyStick_Single {
     let kPin: DigitalPin = null
     let xPin: AnalogPin = null
     let yPin: AnalogPin = null
