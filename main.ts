@@ -315,16 +315,19 @@ namespace aimakerdigitalsensors
     let onKPressedEventHandlerFalse: () => void;
     
     //% blockId=readYValue block="Read JoyStick Y Value"
+   //% group="Joystick"
     export function readYValue(): number {
         return pins.analogReadPin(yPin)
     }
     
     //% blockId=readXValue block="Read JoyStick X Value"
+   //% group="Joystick"
     export function readXValue(): number {
         return pins.analogReadPin(xPin)
     }
 
     //% blockId=isKPressed block="Is JoyStick K pressed"
+   //% group="Joystick"
     export function isKPressed(): boolean {
         if( 0 === pins.digitalReadPin(kPin) ) {
             return true
@@ -336,6 +339,7 @@ namespace aimakerdigitalsensors
      * Registers code to run when k buton pressed.
      */
     //% blockId=onShakeEvent block="On K button at pin=%k pressed=%pressed event" 
+   //% group="Joystick"
     export function onShakeEvent(k: DigitalPin,pressed: boolean, cb: () => void) {
         kPin = k
         if( pressed )
@@ -356,6 +360,7 @@ namespace aimakerdigitalsensors
     }
 
     //% blockId=connectJoyStick block="Connect JoyStick at K=%k|X=%x|y=%y"
+   //% group="Joystick"
     export function connectJoyStick(k: DigitalPin, x: AnalogPin, y: AnalogPin): void {
         kPin = k
         xPin = x
