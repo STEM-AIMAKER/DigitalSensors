@@ -39,7 +39,7 @@ namespace aimakerdigitalsensors
         /**
          * Registers code to run when there is a shake.
          */
-        //% blockId=digitalshake_on_shake_event block="When sensor detects shaking %shake" 
+        //% blockId=digitalshake_on_shake_event block="When shaking is detected = %shake" 
         //% group="Shake Sensor"
         export function onShakeEvent(shake: boolean, cb: () => void) {
             if( shake )
@@ -107,7 +107,7 @@ namespace aimakerdigitalsensors
         let onKeyBoardEventHandlerTrue: () => void
         let onKeyBoardEventHandlerFalse: () => void
 
-        //% blockId=isKeyboardPressed block="Button is pressed"
+        //% blockId=isKeyboardPressed block="When button is pressed"
         //% group="Button"
         export function isKeyboardPressed() : boolean {
             if( keyboardPin )
@@ -132,7 +132,7 @@ namespace aimakerdigitalsensors
         /**
          * Registers code to run when keyboard is pressed.
          */
-        //% blockId=onPressedEvent block="Button is pressed=%pressed event" 
+        //% blockId=onPressedEvent block="When button is pressed = %pressed" 
         //% group="Button"
         export function onPressedEvent(pressed: boolean, cb: () => void) {
             if( pressed )
@@ -200,7 +200,7 @@ namespace aimakerdigitalsensors
         /**
          * Registers code to run when there is magnetic.
          */
-        //% blockId=onMagneticEvent block="When magnetism detected is %magnetic event" 
+        //% blockId=onMagneticEvent block="When magnetism is detected = %magnetic" 
         //% group="Reed Switch"
         export function onMagneticEvent(magnetic: boolean, cb: () => void) {
             if( magnetic )
@@ -216,7 +216,7 @@ namespace aimakerdigitalsensors
         let onPIREventHandlerTrue: () => void;
         let onPIREventHandlerFalse: () => void;
 
-         //% blockId=isHasPerson block="Person exists"
+         //% blockId=isHasPerson block="Human movement is detected"
         //% group="Passive Infrared Sensor"
         export function isHasPerson() : boolean {
             if( pirPin )
@@ -243,7 +243,7 @@ namespace aimakerdigitalsensors
         /**
          * Registers code to run when there is person.
          */
-        //% blockId=onPIREvent block="When person exists=%hasPerson event" 
+        //% blockId=onPIREvent block="When human movement is deteceted = %hasPerson" 
         //% group="Passive Infrared Sensor"
         export function onPIREvent(hasPerson:boolean, cb: () => void) {
             if( hasPerson )
@@ -326,7 +326,7 @@ namespace aimakerdigitalsensors
         return pins.analogReadPin(xPin)
     }
 
-    //% blockId=isKPressed block="Is JoyStick K pressed"
+    //% blockId=isKPressed block="JoyStick K is pressed"
    //% group="Joystick"
     export function isKPressed(): boolean {
         if( 0 === pins.digitalReadPin(kPin) ) {
@@ -336,9 +336,9 @@ namespace aimakerdigitalsensors
     }
     
     /**
-     * Registers code to run when k buton pressed.
+     * Registers code to run when k button pressed.
      */
-    //% blockId=onShakeEvent block="On K button at pin=%k pressed=%pressed event" 
+    //% blockId=onShakeEvent block="When K button at pin=%k is pressed = %pressed" 
    //% group="Joystick"
     export function onShakeEvent(k: DigitalPin,pressed: boolean, cb: () => void) {
         kPin = k
