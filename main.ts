@@ -19,7 +19,7 @@ namespace aimakerdigitalsensors
         let onShakeTestEventHandlerTrue: () => void
         let onShakeTestEventHandlerFalse: () => void
         
-        //% blockId=shakeSensor block="Set shake sensor at pin=%p"
+        //% blockId=shakeSensor block="Shake sensor at pin=%p"
         //% group="Shake Sensor"
         export function shakeSensor(p: DigitalPin) : void {
             shakePin = p
@@ -52,7 +52,7 @@ namespace aimakerdigitalsensors
     //% group="Water Pump"
     export namespace DigitalSwitch {
         let dsPin : DigitalPin = null;
-        //% blockId=turnOn block="Set water pump on pin=%p"
+        //% blockId=turnOn block="Water pumping on pin=%p"
         //% group="Water Pump"
         export function turnOn(p: DigitalPin) : void {
             dsPin = p
@@ -78,7 +78,7 @@ namespace aimakerdigitalsensors
     //% group="Fan"
     export namespace FanModule {
         let fanPin : DigitalPin = null;
-        //% blockId=runFan block="Set Fan at pin=%p"
+        //% blockId=runFan block="Turn on Fan at pin=%p"
         //% group="Fan"
         export function runFan(p: DigitalPin) : void {
             fanPin = p
@@ -114,7 +114,7 @@ namespace aimakerdigitalsensors
                 return (0 == pins.digitalReadPin(keyboardPin))
             return false
         }
-        //% blockId=keyBoardSensor block="Set button at pin=%p"
+        //% blockId=keyBoardSensor block="Button at pin=%p"
         //% group="Button"
         export function  keyBoardSensor(p: DigitalPin) : void {
             pins.setPull(p, PinPullMode.PullNone)
@@ -145,7 +145,7 @@ namespace aimakerdigitalsensors
     //% group="LED"
     export namespace LEDModule {
         let ledPin : DigitalPin = null;
-        //% blockId=turnOnLED block="Set LED at pin=%p"
+        //% blockId=turnOnLED block="Turn on LED at pin=%p"
         //% group="LED"
         export function turnOnLED(p: DigitalPin) : void {
             ledPin = p
@@ -182,7 +182,7 @@ namespace aimakerdigitalsensors
             return false
         }
 
-        //% blockId=magneticSensor block="Set magnetic sensor at pin=%p"
+        //% blockId=magneticSensor block="Magnetic sensor at pin=%p"
         //% group="Reed Switch"
         export function  magneticSensor(p: DigitalPin) : void {
             magneticPin = p
@@ -224,7 +224,7 @@ namespace aimakerdigitalsensors
             return false
         }
 
-        //% blockId=pirSensor block="Set PIR sensor at pin=%p"
+        //% blockId=pirSensor block="PIR sensor at pin=%p"
         //% group="Passive Infrared Sensor"
         export function pirSensor(p: DigitalPin) : void {
             pirPin = p
@@ -243,7 +243,7 @@ namespace aimakerdigitalsensors
         /**
          * Registers code to run when there is person.
          */
-        //% blockId=onPIREvent block="When human movement is deteceted = %hasPerson" 
+        //% blockId=onPIREvent block="When human movement is detected = %hasPerson" 
         //% group="Passive Infrared Sensor"
         export function onPIREvent(hasPerson:boolean, cb: () => void) {
             if( hasPerson )
@@ -257,7 +257,7 @@ namespace aimakerdigitalsensors
     //% group="Relay"
     export namespace RelayModule {
         let relayPin : DigitalPin = null;
-        //% blockId=turnOnRelay block="Set relay at pin=%p"
+        //% blockId=turnOnRelay block="Relay at pin=%p"
         //% group="Relay"
         export function turnOnRelay(p: DigitalPin) : void {
             relayPin = p
@@ -283,7 +283,7 @@ namespace aimakerdigitalsensors
     //% group="Vibration Motor"
     export namespace VibrationMotor {
         let motorPin : DigitalPin = null
-        //% blockId=turnOnVibrationMotor block="Set vibration motor at pin=%p"
+        //% blockId=turnOnVibrationMotor block="Vibration motor at pin=%p"
         //% group="Vibration Motor"
         export function turnOnVibrationMotor(p: DigitalPin) : void {
             motorPin = p
