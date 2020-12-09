@@ -257,7 +257,7 @@ namespace aimakerdigitalsensors
     //% group="Relay"
     export namespace RelayModule {
         let relayPin : DigitalPin = null;
-        //% blockId=turnOnRelay block="Relay at pin=%p"
+        //% blockId=turnOnRelay block="Turn on relay at pin=%p"
         //% group="Relay"
         export function turnOnRelay(p: DigitalPin) : void {
             relayPin = p
@@ -283,7 +283,7 @@ namespace aimakerdigitalsensors
     //% group="Vibration Motor"
     export namespace VibrationMotor {
         let motorPin : DigitalPin = null
-        //% blockId=turnOnVibrationMotor block="Vibration motor at pin=%p"
+        //% blockId=turnOnVibrationMotor block="Turn on vibration motor at pin=%p"
         //% group="Vibration Motor"
         export function turnOnVibrationMotor(p: DigitalPin) : void {
             motorPin = p
