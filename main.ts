@@ -52,7 +52,7 @@ namespace aimakerdigitalsensors
     //% group="Water Pump"
     export namespace DigitalSwitch {
         let dsPin : DigitalPin = null;
-        //% blockId=turnOn block="Pump water on pin=%p"
+        //% blockId=turnOn block="Water pump on pin=%p"
         //% group="Water Pump"
         export function turnOn(p: DigitalPin) : void {
             dsPin = p
@@ -78,14 +78,14 @@ namespace aimakerdigitalsensors
     //% group="Fan"
     export namespace FanModule {
         let fanPin : DigitalPin = null;
-        //% blockId=runFan block="Run fan at pin=%p"
+        //% blockId=runFan block="Fan at pin=%p"
         //% group="Fan"
         export function runFan(p: DigitalPin) : void {
             fanPin = p
             pins.digitalWritePin(p,1)
         }
 
-        //% blockId=runFanAndStop block="Run fan for %second second at pin=%p then stop"
+        //% blockId=runFanAndStop block="Turn on fan for %second second at pin=%p then turn off"
         //% group="Fan"
         export function runFanAndStop(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,1)
@@ -93,7 +93,7 @@ namespace aimakerdigitalsensors
             pins.digitalWritePin(p, 0)
         }
 
-        //% blockId=stopFan block="Stop running fan"
+        //% blockId=stopFan block="Turn off fan"
         //% group="Fan"
         export function stopFan() : void {
             if( fanPin )
@@ -145,7 +145,7 @@ namespace aimakerdigitalsensors
     //% group="LED"
     export namespace LEDModule {
         let ledPin : DigitalPin = null;
-        //% blockId=turnOnLED block="Turn on LED at pin=%p"
+        //% blockId=turnOnLED block="LED at pin=%p"
         //% group="LED"
         export function turnOnLED(p: DigitalPin) : void {
             ledPin = p
@@ -257,7 +257,7 @@ namespace aimakerdigitalsensors
     //% group="Relay"
     export namespace RelayModule {
         let relayPin : DigitalPin = null;
-        //% blockId=turnOnRelay block="Turn on relay at pin=%p"
+        //% blockId=turnOnRelay block="Relay at pin=%p"
         //% group="Relay"
         export function turnOnRelay(p: DigitalPin) : void {
             relayPin = p
@@ -283,7 +283,7 @@ namespace aimakerdigitalsensors
     //% group="Vibration Motor"
     export namespace VibrationMotor {
         let motorPin : DigitalPin = null;
-        //% blockId=turnOnVibrationMotor block="Turn on vibration motor at pin=%p"
+        //% blockId=turnOnVibrationMotor block="Vibration motor at pin=%p"
         //% group="Vibration Motor"
         export function turnOnVibrationMotor(p: DigitalPin) : void {
             motorPin = p
