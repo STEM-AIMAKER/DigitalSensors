@@ -52,14 +52,14 @@ namespace aimakerdigitalsensors
     //% group="Water Pump"
     export namespace DigitalSwitch {
         let dsPin : DigitalPin = null;
-        //% blockId=turnOn block="Switch on pin=%p"
+        //% blockId=turnOn block="Pump water on pin=%p"
         //% group="Water Pump"
         export function turnOn(p: DigitalPin) : void {
             dsPin = p
             pins.digitalWritePin(p,1)
         }
 
-        //% blockId=turnOnAndOff block="Switch on for %second second at pin=%p then switch off"
+        //% blockId=turnOnAndOff block="Pump water for %second second at pin=%p then stop"
         //% group="Water Pump"
         export function turnOnAndOff(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,1)
@@ -67,7 +67,7 @@ namespace aimakerdigitalsensors
             pins.digitalWritePin(p, 0)
         }
 
-        //% blockId=turnOff block="Switch off "
+        //% blockId=turnOff block="Stop pumping water"
         //% group="Water Pump"
         export function turnOff() : void {
             if( dsPin )
@@ -93,7 +93,7 @@ namespace aimakerdigitalsensors
             pins.digitalWritePin(p, 0)
         }
 
-        //% blockId=stopFan block="Stop fan"
+        //% blockId=stopFan block="Stop running fan"
         //% group="Fan"
         export function stopFan() : void {
             if( fanPin )
