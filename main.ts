@@ -2,7 +2,7 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
-//% groups=['Shake Sensor','Water Pump','Fan', 'KeyBoard','LED','Temperature and Humidity Sensor', 'Magnetic Sensor','Passive Infrared Sensor','Relay','Vibration Motor','JoyStick','others']
+//% groups=['Shake Sensor','Water Pump','Fan Module', 'KeyBoard','LED','Temperature and Humidity Sensor', 'Magnetic Sensor','Passive Infrared Sensor','Relay Module','Vibration Motor','JoyStick','others']
 
 namespace aimakerdigitalsensors
 {
@@ -10,7 +10,7 @@ namespace aimakerdigitalsensors
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
-// groups=['Shake Sensor','Water Pump','Fan', 'KeyBoard','LED','Temperature and Humidity Sensor','Magnetic Sensor','Passive Infrared Sensor','Relay','Vibration Motor','Joystick','others']
+// groups=['Shake Sensor','Water Pump','Fan Module', 'Button','LED','Temperature and Humidity Sensor','Magnetic Sensor','Passive Infrared Sensor','Relay Module','Vibration Motor','Joystick','others']
 
    let dht11_humidity = -999.0
    let dht11_temperature = -999.0
@@ -79,18 +79,18 @@ namespace aimakerdigitalsensors
         }
     };
 
-    //% group="Fan"
+    //% group="Fan Module"
     export namespace FanModule {
         let fanPin : DigitalPin = null;
         //% blockId=runFan block="Turn on Fan at pin=%p"
-        //% group="Fan"
+        //% group="Fan Module"
         export function runFan(p: DigitalPin) : void {
             fanPin = p
             pins.digitalWritePin(p,1)
         }
 
         //% blockId=runFanAndStop block="Turn on fan for %second second at pin=%p then turn off"
-        //% group="Fan"
+        //% group="Fan Module"
         export function runFanAndStop(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,1)
             basic.pause(second*1000)
@@ -98,28 +98,28 @@ namespace aimakerdigitalsensors
         }
 
         //% blockId=stopFan block="Turn off fan"
-        //% group="Fan"
+        //% group="Fan Module"
         export function stopFan() : void {
             if( fanPin )
                 pins.digitalWritePin(fanPin, 0)
         }
     };
 
-    //% group="KeyBoard"
-    export namespace KeyBoardModule {
+    //% group="Button"
+    export namespace ButtonModule {
         let keyboardPin: DigitalPin = null
         let onKeyBoardEventHandlerTrue: () => void
         let onKeyBoardEventHandlerFalse: () => void
 
-        //% blockId=isKeyboardPressed block="When keyboard is pressed"
-        //% group="KeyBoard"
+        //% blockId=isKeyboardPressed block="When button is pressed"
+        //% group="Button"
         export function isKeyboardPressed() : boolean {
             if( keyboardPin )
                 return (0 == pins.digitalReadPin(keyboardPin))
             return false
         }
-        //% blockId=keyBoardSensor block="Keyboard at pin=%p"
-        //% group="KeyBoard"
+        //% blockId=keyBoardSensor block="Button at pin=%p"
+        //% group="Button"
         export function  keyBoardSensor(p: DigitalPin) : void {
             pins.setPull(p, PinPullMode.PullNone)
             keyboardPin = p
@@ -136,8 +136,8 @@ namespace aimakerdigitalsensors
         /**
          * Registers code to run when keyboard is pressed.
          */
-        //% blockId=onPressedEvent block="When KeyBoard is pressed = %pressed" 
-        //% group="KeyBoard"
+        //% blockId=onPressedEvent block="When button is pressed = %pressed" 
+        //% group="Button"
         export function onPressedEvent(pressed: boolean, cb: () => void) {
             if( pressed )
                 onKeyBoardEventHandlerTrue = cb
@@ -326,18 +326,18 @@ namespace aimakerdigitalsensors
     };
 
 
-    //% group="Relay"
+    //% group="Relay Module"
     export namespace RelayModule {
         let relayPin : DigitalPin = null;
         //% blockId=turnOnRelay block="Turn on relay at pin=%p"
-        //% group="Relay"
+        //% group="Relay Module"
         export function turnOnRelay(p: DigitalPin) : void {
             relayPin = p
             pins.digitalWritePin(p,0)
         }
 
         //% blockId=turnOnRelayAndTurnOff block="Turn on relay for %second second at pin=%p then turn off"
-        //% group="Relay"
+        //% group="Relay Module"
         export function turnOnRelayAndTurnOff(second: number, p: DigitalPin): void {
             pins.digitalWritePin(p,0)
             basic.pause(second*1000)
@@ -345,7 +345,7 @@ namespace aimakerdigitalsensors
         }
 
         //% blockId=turnOffRelay block="Turn off relay"
-        //% group="Relay"
+        //% group="Relay Module"
         export function turnOffRelay() : void {
             if( relayPin )
                 pins.digitalWritePin(relayPin, 1)
