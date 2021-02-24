@@ -2,7 +2,7 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
-//% groups=['Shake Sensor','Water Pump','Fan', 'Button','LED','Temperature and Humidity Sensor', 'Magnetic Sensor','Passive Infrared Sensor','Relay','Vibration Motor','JoyStick','others']
+//% groups=['Shake Sensor','Water Pump','Fan', 'KeyBoard','LED','Temperature and Humidity Sensor', 'Magnetic Sensor','Passive Infrared Sensor','Relay','Vibration Motor','JoyStick','others']
 
 namespace aimakerdigitalsensors
 {
@@ -10,7 +10,7 @@ namespace aimakerdigitalsensors
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
-// groups=['Shake Sensor','Water Pump','Fan', 'Button','LED','Temperature and Humidity Sensor','Magnetic Sensor','Passive Infrared Sensor','Relay','Vibration Motor','Joystick','others']
+// groups=['Shake Sensor','Water Pump','Fan', 'KeyBoard','LED','Temperature and Humidity Sensor','Magnetic Sensor','Passive Infrared Sensor','Relay','Vibration Motor','Joystick','others']
 
    let dht11_humidity = -999.0
    let dht11_temperature = -999.0
@@ -105,21 +105,21 @@ namespace aimakerdigitalsensors
         }
     };
 
-    //% group="Button"
-    export namespace KeyBoard {
+    //% group="KeyBoard"
+    export namespace KeyBoardModule {
         let keyboardPin: DigitalPin = null
         let onKeyBoardEventHandlerTrue: () => void
         let onKeyBoardEventHandlerFalse: () => void
 
-        //% blockId=isKeyboardPressed block="When button is pressed"
-        //% group="Button"
+        //% blockId=isKeyboardPressed block="When keyboard is pressed"
+        //% group="KeyBoard"
         export function isKeyboardPressed() : boolean {
             if( keyboardPin )
                 return (0 == pins.digitalReadPin(keyboardPin))
             return false
         }
-        //% blockId=keyBoardSensor block="Button at pin=%p"
-        //% group="Button"
+        //% blockId=keyBoardSensor block="Keyboard at pin=%p"
+        //% group="KeyBoard"
         export function  keyBoardSensor(p: DigitalPin) : void {
             pins.setPull(p, PinPullMode.PullNone)
             keyboardPin = p
@@ -136,8 +136,8 @@ namespace aimakerdigitalsensors
         /**
          * Registers code to run when keyboard is pressed.
          */
-        //% blockId=onPressedEvent block="When button is pressed = %pressed" 
-        //% group="Button"
+        //% blockId=onPressedEvent block="When KeyBoard is pressed = %pressed" 
+        //% group="KeyBoard"
         export function onPressedEvent(pressed: boolean, cb: () => void) {
             if( pressed )
                 onKeyBoardEventHandlerTrue = cb
