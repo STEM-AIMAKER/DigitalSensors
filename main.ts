@@ -2,7 +2,7 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
-//% groups=['Shake Sensor','Water Pump','Fan', 'Button','LED','Temperature and Humidity Sensor', 'Reed Switch','Passive Infrared Sensor','Relay','Vibration Motor','JoyStick','others']
+//% groups=['Shake Sensor','Water Pump','Fan', 'Button','LED','Temperature and Humidity Sensor', 'Magnetic Sensor','Passive Infrared Sensor','Relay','Vibration Motor','JoyStick','others']
 
 namespace aimakerdigitalsensors
 {
@@ -10,7 +10,7 @@ namespace aimakerdigitalsensors
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: digital sensors"
-// groups=['Shake Sensor','Water Pump','Fan', 'Button','LED','Temperature and Humidity Sensor','Reed Switch','Passive Infrared Sensor','Relay','Vibration Motor','Joystick','others']
+// groups=['Shake Sensor','Water Pump','Fan', 'Button','LED','Temperature and Humidity Sensor','Magnetic Sensor','Passive Infrared Sensor','Relay','Vibration Motor','Joystick','others']
 
    let dht11_humidity = -999.0
    let dht11_temperature = -999.0
@@ -240,14 +240,14 @@ namespace aimakerdigitalsensors
         if (wait) basic.pause(2000)
     }
 
-    //% group="Reed Switch"
+    //% group="Magnetic Sensor"
     export namespace Magnetic {
         let magneticPin:DigitalPin = null;
         let onMagneticEventHandlerTrue: () => void
         let onMagneticEventHandlerFalse: () => void
 
         //% blockId=isMagnetic block="Magnetism is detected"
-        //% group="Reed Switch"
+        //% group="Magnetic Sensor"
         export function isMagnetic() : boolean {
             if( magneticPin )
                 return (0 == pins.digitalReadPin(magneticPin))
@@ -255,7 +255,7 @@ namespace aimakerdigitalsensors
         }
 
         //% blockId=magneticSensor block="Magnetic sensor at pin=%p"
-        //% group="Reed Switch"
+        //% group="Magnetic Sensor"
         export function  magneticSensor(p: DigitalPin) : void {
             magneticPin = p
             pins.setPull(p, PinPullMode.PullNone)
@@ -273,7 +273,7 @@ namespace aimakerdigitalsensors
          * Registers code to run when there is magnetic.
          */
         //% blockId=onMagneticEvent block="When magnetism is detected = %magnetic" 
-        //% group="Reed Switch"
+        //% group="Magnetic Sensor"
         export function onMagneticEvent(magnetic: boolean, cb: () => void) {
             if( magnetic )
                 onMagneticEventHandlerTrue = cb
